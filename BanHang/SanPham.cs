@@ -36,12 +36,12 @@ namespace BanHang
             fsp.txtmasanpham.Text=kq+kyso.ToString();
         }        
 
-        //Kiểm tra  nếu không điền thông tin  FormSanPham
-        public static bool KiemTraThemVaSuaSP(string tensp, string quycach, string giaban, string soluongton)
+        //Kiểm tra  thêm sản phẩm
+        public static bool KiemTraThemSP(string masp,string tensp, string quycach, string giaban, string soluongton)
         {
             int kt = 0;
             string kq = "Phát Hiện Những Lỗi Sau:\n";
-
+            
             if (tensp == "")
             {
                 kt = 1;
@@ -78,29 +78,89 @@ namespace BanHang
         //Thêm sản phẩm
         public void ThemSP(string masp, string tensp, string quycach, int giaban, int soluongton )
         {
-            SANPHAM sp = new SANPHAM();   //Table trong LinQ
-            sp.MASP = masp;
-            sp.TENSP = tensp;
-            sp.QUYCACH = quycach;
-            sp.GIABAN = giaban;
-            sp.SLTON = soluongton;
+            DialogResult thongbao;
+            thongbao = (MessageBox.Show("Bạn có chắc muốn thêm", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question));
+            if (thongbao == DialogResult.Yes)
+            {
+                SANPHAM sp = new SANPHAM();   //Table trong LinQ
+                sp.MASP = masp;
+                sp.TENSP = tensp;
+                sp.QUYCACH = quycach;
+                sp.GIABAN = giaban;
+                sp.SLTON = soluongton;
 
-            data.Database().TANG_MATUDONG("SP");
-            data.Database().SANPHAMs.InsertOnSubmit(sp);
-            data.Database().SubmitChanges();           
+                data.Database().TANG_MATUDONG("SP"); // Tăng ký số trong table cấp mã tự động
+                data.Database().SANPHAMs.InsertOnSubmit(sp); // Tiến hành thêm
+                data.Database().SubmitChanges(); //Lưu lại
+                MessageBox.Show("Thêm thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }            
         }
+
+        //Kiểm tra sửa sản phẩm
+        public static bool KiemTraSuaSP(string masp, string tensp, string quycach, string giaban, string soluongton)
+        {
+            int kt = 0;
+            string kq = "Phát Hiện Những Lỗi Sau:\n";
+
+            if (masp == "")
+            {
+                kt = 1;
+                kq += "-Vui lòng chọn mã sản phẩm\n";
+            }            
+            if (tensp == "")
+            {
+                kt = 1;
+                kq += "-Vui lòng nhập tên sản phẩm\n";
+            }
+            if (quycach == "")
+            {
+                kt = 1;
+                kq += "-Vui lòng nhập quy cách\n";
+            }
+            if (giaban == "")
+            {
+                kt = 1;
+                kq += "-Vui lòng nhập giá bán\n";
+            }
+            if (soluongton == "")
+            {
+                kt = 1;
+                kq += "-Vui lòng nhập số lượng tồn";
+            }
+
+            if (kt == 1)
+            {
+                MessageBox.Show(kq, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        
 
         //Sửa sản phẩm
         public void SuaSP(string masp, string tensp, string quycach, int giaban, int soluongton)
         {
             SANPHAM sp = data.Database().SANPHAMs.SingleOrDefault(s=>s.MASP==masp);
+            DialogResult thongbao;
             if (sp != null)
             {
-                sp.TENSP = tensp;
-                sp.QUYCACH = quycach;
-                sp.GIABAN = giaban;
-                sp.SLTON = soluongton;
-                data.Database().SubmitChanges();
+                thongbao=(MessageBox.Show("Bạn có chắc muốn sửa","Thông Báo",MessageBoxButtons.YesNo,MessageBoxIcon.Question));
+                if(thongbao==DialogResult.Yes)
+                {
+                    sp.TENSP = tensp;
+                    sp.QUYCACH = quycach;
+                    sp.GIABAN = giaban;
+                    sp.SLTON = soluongton;
+                    data.Database().SubmitChanges();
+                    MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }                  
+            }
+            else
+            {
+                MessageBox.Show("Mã sản phẩm không tồn tại","Thông Báo",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
         }
 

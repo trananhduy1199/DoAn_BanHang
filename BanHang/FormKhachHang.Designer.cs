@@ -160,7 +160,7 @@
             this.txtsodienthoai.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtsodienthoai.Properties.Mask.ShowPlaceHolders = false;
             this.txtsodienthoai.Size = new System.Drawing.Size(141, 20);
-            this.txtsodienthoai.TabIndex = 6;
+            this.txtsodienthoai.TabIndex = 7;
             // 
             // txtdiachi
             // 
@@ -170,7 +170,7 @@
             this.txtdiachi.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtdiachi.Properties.Mask.ShowPlaceHolders = false;
             this.txtdiachi.Size = new System.Drawing.Size(141, 20);
-            this.txtdiachi.TabIndex = 5;
+            this.txtdiachi.TabIndex = 6;
             // 
             // gridControlkhachhang
             // 
@@ -178,7 +178,7 @@
             this.gridControlkhachhang.MainView = this.gridView1;
             this.gridControlkhachhang.Name = "gridControlkhachhang";
             this.gridControlkhachhang.Size = new System.Drawing.Size(672, 227);
-            this.gridControlkhachhang.TabIndex = 11;
+            this.gridControlkhachhang.TabIndex = 12;
             this.gridControlkhachhang.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
@@ -254,7 +254,7 @@
             this.butthem.Location = new System.Drawing.Point(32, 248);
             this.butthem.Name = "butthem";
             this.butthem.Size = new System.Drawing.Size(75, 23);
-            this.butthem.TabIndex = 7;
+            this.butthem.TabIndex = 8;
             this.butthem.Text = "Thêm";
             this.butthem.Click += new System.EventHandler(this.butthem_Click);
             // 
@@ -263,7 +263,7 @@
             this.butsua.Location = new System.Drawing.Point(195, 246);
             this.butsua.Name = "butsua";
             this.butsua.Size = new System.Drawing.Size(75, 23);
-            this.butsua.TabIndex = 8;
+            this.butsua.TabIndex = 9;
             this.butsua.Text = "Sửa";
             this.butsua.Click += new System.EventHandler(this.butsua_Click);
             // 
@@ -272,7 +272,7 @@
             this.butxoa.Location = new System.Drawing.Point(397, 246);
             this.butxoa.Name = "butxoa";
             this.butxoa.Size = new System.Drawing.Size(75, 23);
-            this.butxoa.TabIndex = 9;
+            this.butxoa.TabIndex = 10;
             this.butxoa.Text = "Xóa";
             this.butxoa.Click += new System.EventHandler(this.butxoa_Click);
             // 
@@ -281,7 +281,7 @@
             this.butthoat.Location = new System.Drawing.Point(568, 246);
             this.butthoat.Name = "butthoat";
             this.butthoat.Size = new System.Drawing.Size(75, 23);
-            this.butthoat.TabIndex = 10;
+            this.butthoat.TabIndex = 11;
             this.butthoat.Text = "Thoát";
             this.butthoat.Click += new System.EventHandler(this.butthoat_Click);
             // 
@@ -291,7 +291,7 @@
             this.radioButtonnam.Location = new System.Drawing.Point(195, 100);
             this.radioButtonnam.Name = "radioButtonnam";
             this.radioButtonnam.Size = new System.Drawing.Size(47, 17);
-            this.radioButtonnam.TabIndex = 12;
+            this.radioButtonnam.TabIndex = 3;
             this.radioButtonnam.TabStop = true;
             this.radioButtonnam.Text = "Nam";
             this.radioButtonnam.UseVisualStyleBackColor = true;
@@ -302,7 +302,7 @@
             this.radioButtonnu.Location = new System.Drawing.Point(297, 99);
             this.radioButtonnu.Name = "radioButtonnu";
             this.radioButtonnu.Size = new System.Drawing.Size(39, 17);
-            this.radioButtonnu.TabIndex = 13;
+            this.radioButtonnu.TabIndex = 4;
             this.radioButtonnu.TabStop = true;
             this.radioButtonnu.Text = "Nữ";
             this.radioButtonnu.UseVisualStyleBackColor = true;
@@ -316,10 +316,10 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditngaysinh.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEditngaysinh.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dateEditngaysinh.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.dateEditngaysinh.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Classic;
+            this.dateEditngaysinh.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
             this.dateEditngaysinh.Size = new System.Drawing.Size(141, 20);
-            this.dateEditngaysinh.TabIndex = 14;
+            this.dateEditngaysinh.TabIndex = 5;
             // 
             // FormKhachHang
             // 
@@ -368,11 +368,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.TextEdit txtmakhachhang;
         private DevExpress.XtraEditors.TextEdit txthoten;
         private DevExpress.XtraEditors.TextEdit txtsodienthoai;
         private DevExpress.XtraEditors.TextEdit txtdiachi;
-        private DevExpress.XtraGrid.GridControl gridControlkhachhang;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SimpleButton butthem;
         private DevExpress.XtraEditors.SimpleButton butsua;
@@ -388,5 +386,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn DCKH;
         private DevExpress.XtraGrid.Columns.GridColumn DTKH;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        public DevExpress.XtraGrid.GridControl gridControlkhachhang;
+        public DevExpress.XtraEditors.TextEdit txtmakhachhang;
     }
 }

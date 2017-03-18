@@ -26,10 +26,11 @@ namespace BanHang
             sp.LoadData(this);
         }
 
+        //Thêm sản phẩm
         private void butthem_Click(object sender, EventArgs e)
         {
 
-            if (SanPham.KiemTraThemVaSuaSP(txttensanpham.Text, txtquycach.Text, txtgiaban.Text, txtsoluongton.Text) == true)
+            if (SanPham.KiemTraThemSP(txtmasanpham.Text,txttensanpham.Text, txtquycach.Text, txtgiaban.Text, txtsoluongton.Text) == true)
             {
                 sp.ThemSP(txtmasanpham.Text, txttensanpham.Text, txtquycach.Text, int.Parse(txtgiaban.Text.ToString()), int.Parse(txtsoluongton.Text.ToString()));
                 sp.LoadData(this);
@@ -37,9 +38,10 @@ namespace BanHang
             }            
         }
 
+        //Sửa sản phẩm
         private void butsua_Click(object sender, EventArgs e)
         {
-            if (SanPham.KiemTraThemVaSuaSP(txttensanpham.Text, txtquycach.Text, txtgiaban.Text, txtsoluongton.Text) == true)
+            if (SanPham.KiemTraSuaSP(txtmasanpham.Text,txttensanpham.Text, txtquycach.Text, txtgiaban.Text, txtsoluongton.Text) == true)
             {
                 sp.SuaSP(txtmasanpham.Text, txttensanpham.Text, txtquycach.Text, int.Parse(txtgiaban.Text.ToString()), int.Parse(txtsoluongton.Text.ToString()));
                 sp.LoadData(this);
@@ -55,7 +57,8 @@ namespace BanHang
             txtgiaban.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "GIABAN").ToString();
             txtsoluongton.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "SLTON").ToString();
         }
-
+        
+        //Xóa sản phẩm
         private void butxoa_Click(object sender, EventArgs e)
         {
             if (SanPham.KTXoaSP(txtmasanpham.Text) == true)

@@ -14,113 +14,25 @@ namespace BanHang
 {
     public partial class FormKhachHang : Form
     {
-        dbQLBanHangDataContext data = new dbQLBanHangDataContext();
+        KhachHang kh;
         public FormKhachHang()
         {
+            kh = new KhachHang();
             InitializeComponent();
-            LoadData();
-        }
-
-        public void LoadData()
-        {
+            FormKhachHang_LoadData();
             txtmakhachhang.Enabled = false;
-            var dulieu=data.TABLE_KHACHHANG();
-            gridControlkhachhang.DataSource = dulieu;
-            LoadMaKhachHang();            
         }
 
-        public void ResetForm()
+        public void FormKhachHang_LoadData()
         {
-            LoadMaKhachHang();
-            txthoten.Text = "";
-            radioButtonnam.Checked = false;
-            radioButtonnu.Checked = false;
-            dateEditngaysinh.Text = "";
-            txtdiachi.Text = "";
-            txtsodienthoai.Text = "";
-        }
-
-        //Load Mã Khách Hàng
-        public void LoadMaKhachHang()
-        {
-            int dem = 10;
-            int so = (int)data.RETURN_KYSO("KH");
-            int len_so = so.ToString().Length;
-            dem = dem - 2 - len_so;
-
-            string ma = "KH";
-            for (int i = 1; i <= dem; i++)
-            {
-                ma += "0";
-            }
-            txtmakhachhang.Text = ma + so.ToString(); // Hiện Mã Khách Hàng Tiếp Theo
-        }
-    
-        
+            kh.LoadData(this);
+        }        
 
         private void butthoat_Click(object sender, EventArgs e)
         {
             this.Close();
         }                
-
-        //Sửa
-        private void butsua_Click(object sender, EventArgs e)
-        {
-            var laymakh = txtmakhachhang.Text;            
-            KHACHHANG kh = data.KHACHHANGs.SingleOrDefault(k => k.MAKH == laymakh);
-            if (kh != null)
-            {
-                kh.TENKH = txthoten.Text;
-                if (radioButtonnam.Checked == true)
-                {
-                    kh.GIOITINH = radioButtonnam.Text;
-                }
-                if(radioButtonnu.Checked==true)
-                {
-                    kh.GIOITINH = radioButtonnu.Text;
-                }
-                kh.NGAYSINH = Convert.ToDateTime(dateEditngaysinh.Text);
-                kh.DCKH = txtdiachi.Text;
-                kh.DTKH = txtsodienthoai.Text;
-                data.SubmitChanges();
-                ResetForm();
-                LoadData();
-            }
-        }
-
-        //Thêm
-        private void butthem_Click(object sender, EventArgs e)
-        {
-            //Lấy giá trị giới tính từ radiobutton
-            string gt = "";
-            if (radioButtonnam.Checked == true)
-            {
-                gt = radioButtonnam.Text;
-            }
-            if (radioButtonnu.Checked == true)
-            { 
-                gt=radioButtonnu.Text;
-            }
-
-            //Khởi tạo mới đối tượng Khách Hàng & Tiến hành thêm mới
-            KHACHHANG kh = new KHACHHANG();
-            kh.MAKH = txtmakhachhang.Text;
-            kh.TENKH = txthoten.Text;
-            kh.GIOITINH = gt;
-            kh.NGAYSINH = Convert.ToDateTime(dateEditngaysinh.Text);
-            kh.DCKH = txtdiachi.Text;
-            kh.DTKH = txtsodienthoai.Text;
-
-            //Lưu vào bảng KHÁCH HÀNG
-            data.KHACHHANGs.InsertOnSubmit(kh);
-            data.SubmitChanges();
-
-            //Tăng ký số trong bảng CẤP MÃ TỰ ĐỘNG
-            data.TANG_MATUDONG("KH");
-            LoadData();
-
-        }
-
+       
         private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             txtmakhachhang.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "MAKH").ToString();
@@ -141,23 +53,67 @@ namespace BanHang
             }
         }
 
+        //Thêm khách hàng
+        private void butthem_Click(object sender, EventArgs e)
+        {
+            string gt = "";
+            if (radioButtonnam.Checked == true)
+            {
+                gt = radioButtonnam.Text;
+            }
+            if (radioButtonnu.Checked == true)
+            {
+                gt = radioButtonnu.Text;
+            }
+            if (KhachHang.KiemTraThemKH(txtmakhachhang.Text, txthoten.Text, gt, dateEditngaysinh.Text, txtdiachi.Text, txtsodienthoai.Text)==true)
+            {
+                kh.ThemKH(txtmakhachhang.Text, txthoten.Text, gt, dateEditngaysinh.Text, txtdiachi.Text, txtsodienthoai.Text);
+                kh.LoadData(this);
+                ResetForm();
+            }
+        }
+
+        //ResetForm
+        public void ResetForm()
+        {
+            txthoten.Text = "";
+            radioButtonnam.Checked = false;
+            radioButtonnu.Checked = false;
+            dateEditngaysinh.Text = "";
+            txtdiachi.Text = "";
+            txtsodienthoai.Text = "";
+        }
+
+        //Sửa khách hàng
+        private void butsua_Click(object sender, EventArgs e)
+        {
+            string gt = "";
+            if (radioButtonnam.Checked == true)
+            {
+                gt = radioButtonnam.Text;
+            }
+            if (radioButtonnu.Checked == true)
+            {
+                gt = radioButtonnu.Text;
+            }
+            if (KhachHang.KiemTraSuaKH(txtmakhachhang.Text, txthoten.Text, gt, dateEditngaysinh.Text.ToString(), txtdiachi.Text, txtsodienthoai.Text) == true)
+            {
+                kh.SuaKH(txtmakhachhang.Text, txthoten.Text, gt,dateEditngaysinh.Text.ToString(), txtdiachi.Text, txtsodienthoai.Text);
+                kh.LoadData(this);
+                ResetForm();
+            }
+        }
+
+        //Xóa khách hàng
         private void butxoa_Click(object sender, EventArgs e)
         {
-            var laymakh = txtmakhachhang.Text;
-            KHACHHANG kh = data.KHACHHANGs.SingleOrDefault(k=>k.MAKH==laymakh);
-            if (kh != null)
+            if (KhachHang.KiemTraXoaKH(txtmakhachhang.Text) == true)
             {
-                DialogResult thongbao;
-                thongbao = (MessageBox.Show("Bạn có chắc muốn xóa ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information));
-                if (thongbao == DialogResult.Yes)
-                {
-                    data.KHACHHANGs.DeleteOnSubmit(kh);
-                    data.SubmitChanges();
-                    ResetForm();
-                    LoadData();
-                }                
+                kh.XoaKH(txtmakhachhang.Text);
+                kh.LoadData(this);
+                ResetForm();
             }
-        }        
+        }
         
     }
 }

@@ -107,6 +107,7 @@
             this.butthoat.Size = new System.Drawing.Size(75, 23);
             this.butthoat.TabIndex = 18;
             this.butthoat.Text = "Thoát";
+            this.butthoat.Click += new System.EventHandler(this.butthoat_Click);
             // 
             // butxoa
             // 
@@ -183,16 +184,16 @@
         #endregion
 
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit txtmachucvu;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txttenchucvu;
         private DevExpress.XtraEditors.SimpleButton butthem;
         private DevExpress.XtraEditors.SimpleButton butsua;
         private DevExpress.XtraEditors.SimpleButton butthoat;
         private DevExpress.XtraEditors.SimpleButton butxoa;
-        private DevExpress.XtraGrid.GridControl gridControlchucvu;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn MACV;
         private DevExpress.XtraGrid.Columns.GridColumn TENCV;
+        public DevExpress.XtraGrid.GridControl gridControlchucvu;
+        public DevExpress.XtraEditors.TextEdit txtmachucvu;
     }
 }

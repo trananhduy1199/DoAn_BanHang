@@ -20,7 +20,7 @@ namespace BanHang
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            Application.Run(new FormSanPham());
+            Application.Run(new FormKhachHang());
         }
     }
 }

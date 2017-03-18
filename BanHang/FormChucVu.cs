@@ -13,68 +13,54 @@ namespace BanHang
 {
     public partial class FormChucVu : Form
     {
-        dbQLBanHangDataContext data = new dbQLBanHangDataContext();
+        ChucVu cv;
         public FormChucVu()
         {
+            cv = new ChucVu();
             InitializeComponent();
-            txtmachucvu.Enabled = false;
-            LoadData();
+            FormChucVu_Load();
+            txtmachucvu.Enabled = false;            
         }
 
-        public void LoadData()
+        //Load Form
+        public void FormChucVu_Load()
         {
-            var dl = data.TABLE_CHUCVU();
-            gridControlchucvu.DataSource = dl;
-            LoadMaChucVu();
+            cv.LoadData(this);
         }
 
-        public void LoadMaChucVu()
-        {
-            int dem = 10;
-            int kyso = int.Parse(data.RETURN_KYSO("CV").ToString());
-            int len_so = kyso.ToString().Length;
-            dem = dem - 2 - len_so;
-            string kq = "CV";
-            for (int i = 1; i <= dem; i++)
-            {
-                kq += "0";
-            }
-            txtmachucvu.Text = kq + kyso.ToString();
+        //Reset Form
+        public void ResetForm()
+        {            
+            txttenchucvu.Text = "";
         }
-
+        //Thêm Chức Vụ
         private void butthem_Click(object sender, EventArgs e)
         {
-            CHUCVU cv = new CHUCVU();
-            cv.MACV = txtmachucvu.Text;
-            cv.TENCV = txttenchucvu.Text;
-            data.CHUCVUs.InsertOnSubmit(cv);
-            data.SubmitChanges();
-            data.TANG_MATUDONG("CV");
-            LoadData();
+            if (ChucVu.KiemTraThemVaSuaCV(txttenchucvu.Text)==true)
+            {
+                cv.ThemCV(txtmachucvu.Text,txttenchucvu.Text);
+                FormChucVu_Load();
+                ResetForm();
+            }
         }
 
         private void butsua_Click(object sender, EventArgs e)
         {
-            CHUCVU CV = data.CHUCVUs.SingleOrDefault(C=>C.MACV==txtmachucvu.Text);
-
-            CV.TENCV = txttenchucvu.Text;
-            data.SubmitChanges();
-            LoadData();
+            if (ChucVu.KiemTraThemVaSuaCV(txttenchucvu.Text) == true)
+            {
+                cv.SuaCV(txtmachucvu.Text,txttenchucvu.Text);
+                FormChucVu_Load();
+                ResetForm();
+            }            
         }
 
         private void butxoa_Click(object sender, EventArgs e)
         {
-            CHUCVU cv = data.CHUCVUs.SingleOrDefault(C => C.MACV == txtmachucvu.Text);
-            DialogResult thongbao;
-            if(cv!=null)
+            if (ChucVu.KiemTraXoaCV(txtmachucvu.Text) == true)
             {
-                thongbao = (MessageBox.Show("Bạn có chắc muốn xóa", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question));
-                if (thongbao == DialogResult.Yes)
-                {
-                    data.CHUCVUs.DeleteOnSubmit(cv);
-                    data.SubmitChanges();
-                    LoadData();
-                }                                
+                cv.XoaCV(txtmachucvu.Text);
+                FormChucVu_Load();
+                ResetForm();
             }
         }
 
@@ -82,6 +68,11 @@ namespace BanHang
         {
             txtmachucvu.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "MACV").ToString();            
             txttenchucvu.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "TENCV").ToString();
+        }
+
+        private void butthoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
