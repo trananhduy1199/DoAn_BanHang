@@ -22,7 +22,7 @@ namespace BanHang.LinqToSQL
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DATABASE_QUANAO")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="QLBANHANGTHOITRANG")]
 	public partial class dbQLBanHangDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -60,7 +60,7 @@ namespace BanHang.LinqToSQL
     #endregion
 		
 		public dbQLBanHangDataContext() : 
-				base(global::BanHang.Properties.Settings.Default.DATABASE_QUANAOConnectionString, mappingSource)
+				base(global::BanHang.Properties.Settings.Default.QLBANHANGTHOITRANGConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

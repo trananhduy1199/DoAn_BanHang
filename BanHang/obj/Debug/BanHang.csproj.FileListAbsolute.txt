@@ -34,3 +34,4 @@ C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.FormNhanVien.
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.Properties.Resources.resources
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.csproj.GenerateResource.Cache
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.exe.licenses
+C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.FormSanPham.resources
