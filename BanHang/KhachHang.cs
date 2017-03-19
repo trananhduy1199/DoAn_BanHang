@@ -90,7 +90,7 @@ namespace BanHang
                 kh.MAKH = makh;
                 kh.TENKH = tenkh;
                 kh.GIOITINH = gioitinh;
-                kh.NGAYSINH = Convert.ToDateTime(ngaysinh.ToString());
+                kh.NGAYSINH = Convert.ToDateTime(ngaysinh.ToString());                    
                 kh.DCKH = diachi;
                 kh.DTKH = sodienthoai;
 
@@ -160,8 +160,8 @@ namespace BanHang
                 if (thongbao == DialogResult.Yes)
                 {
                     kh.TENKH = tenkh;
-                    kh.GIOITINH = gioitinh;
                     kh.NGAYSINH = Convert.ToDateTime(ngaysinh.ToString());
+                    kh.GIOITINH = gioitinh;                    
                     kh.DCKH = diachi;
                     kh.DTKH = sodienthoai;
 

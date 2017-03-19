@@ -10,16 +10,18 @@ namespace BanHang
 {
     class SanPham
     {
-        ConnectToDatabase data;
+        ConnectToDatabase data; //Gọi class ConnectToDatabase
 
         public SanPham()
         {
-            data = new ConnectToDatabase();
+            data = new ConnectToDatabase(); //Tạo mới 
         }
 
         //Load data lên form (load lên gridcontrol, load mã sản phẩm)
         public void LoadData(FormSanPham fsp)
         {
+
+            //Load data lên gridControl
             var sp = data.Database().SANPHAMs.ToList();
             fsp.gridControlsanpham.DataSource = sp;
 

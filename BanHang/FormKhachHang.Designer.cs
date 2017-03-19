@@ -316,8 +316,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditngaysinh.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEditngaysinh.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Classic;
-            this.dateEditngaysinh.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
             this.dateEditngaysinh.Size = new System.Drawing.Size(141, 20);
             this.dateEditngaysinh.TabIndex = 5;
             // 

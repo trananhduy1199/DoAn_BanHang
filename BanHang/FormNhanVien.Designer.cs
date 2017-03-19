@@ -64,7 +64,7 @@
             this.NOICAPCMND = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NGAYCAPCMND = new DevExpress.XtraGrid.Columns.GridColumn();
             this.HOKHAU = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.MACHUCVU = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.MACV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.HINHANH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.butthem = new DevExpress.XtraEditors.SimpleButton();
             this.butsua = new DevExpress.XtraEditors.SimpleButton();
@@ -222,6 +222,9 @@
             // 
             this.txttennhanvien.Location = new System.Drawing.Point(201, 66);
             this.txttennhanvien.Name = "txttennhanvien";
+            this.txttennhanvien.Properties.Mask.EditMask = ".{0,50}";
+            this.txttennhanvien.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txttennhanvien.Properties.Mask.ShowPlaceHolders = false;
             this.txttennhanvien.Size = new System.Drawing.Size(132, 20);
             this.txttennhanvien.TabIndex = 2;
             // 
@@ -229,6 +232,9 @@
             // 
             this.txtchoohientai.Location = new System.Drawing.Point(201, 206);
             this.txtchoohientai.Name = "txtchoohientai";
+            this.txtchoohientai.Properties.Mask.EditMask = ".{0,100}";
+            this.txtchoohientai.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtchoohientai.Properties.Mask.ShowPlaceHolders = false;
             this.txtchoohientai.Size = new System.Drawing.Size(132, 20);
             this.txtchoohientai.TabIndex = 6;
             // 
@@ -236,6 +242,9 @@
             // 
             this.txtsodienthoai.Location = new System.Drawing.Point(201, 250);
             this.txtsodienthoai.Name = "txtsodienthoai";
+            this.txtsodienthoai.Properties.Mask.EditMask = "\\d{0,13}";
+            this.txtsodienthoai.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtsodienthoai.Properties.Mask.ShowPlaceHolders = false;
             this.txtsodienthoai.Size = new System.Drawing.Size(132, 20);
             this.txtsodienthoai.TabIndex = 7;
             // 
@@ -243,6 +252,9 @@
             // 
             this.txtsocmnd.Location = new System.Drawing.Point(201, 304);
             this.txtsocmnd.Name = "txtsocmnd";
+            this.txtsocmnd.Properties.Mask.EditMask = "\\d{9}";
+            this.txtsocmnd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtsocmnd.Properties.Mask.ShowPlaceHolders = false;
             this.txtsocmnd.Size = new System.Drawing.Size(132, 20);
             this.txtsocmnd.TabIndex = 8;
             // 
@@ -250,6 +262,9 @@
             // 
             this.txtnoicap.Location = new System.Drawing.Point(201, 360);
             this.txtnoicap.Name = "txtnoicap";
+            this.txtnoicap.Properties.Mask.EditMask = ".{0,50}";
+            this.txtnoicap.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtnoicap.Properties.Mask.ShowPlaceHolders = false;
             this.txtnoicap.Size = new System.Drawing.Size(132, 20);
             this.txtnoicap.TabIndex = 9;
             // 
@@ -269,6 +284,9 @@
             // 
             this.txthokhau.Location = new System.Drawing.Point(507, 249);
             this.txthokhau.Name = "txthokhau";
+            this.txthokhau.Properties.Mask.EditMask = ".{0,50}";
+            this.txthokhau.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txthokhau.Properties.Mask.ShowPlaceHolders = false;
             this.txthokhau.Size = new System.Drawing.Size(132, 20);
             this.txthokhau.TabIndex = 11;
             // 
@@ -347,7 +365,7 @@
             this.NOICAPCMND,
             this.NGAYCAPCMND,
             this.HOKHAU,
-            this.MACHUCVU,
+            this.MACV,
             this.HINHANH});
             this.gridView1.GridControl = this.gridControlnhanvien;
             this.gridView1.Name = "gridView1";
@@ -463,16 +481,16 @@
             this.HOKHAU.VisibleIndex = 9;
             this.HOKHAU.Width = 52;
             // 
-            // MACHUCVU
+            // MACV
             // 
-            this.MACHUCVU.Caption = "Mã Chức Vụ";
-            this.MACHUCVU.FieldName = "MACHUCVU";
-            this.MACHUCVU.Name = "MACHUCVU";
-            this.MACHUCVU.OptionsColumn.AllowEdit = false;
-            this.MACHUCVU.OptionsColumn.ReadOnly = true;
-            this.MACHUCVU.Visible = true;
-            this.MACHUCVU.VisibleIndex = 10;
-            this.MACHUCVU.Width = 52;
+            this.MACV.Caption = "Mã Chức Vụ";
+            this.MACV.FieldName = "MACV";
+            this.MACV.Name = "MACV";
+            this.MACV.OptionsColumn.AllowEdit = false;
+            this.MACV.OptionsColumn.ReadOnly = true;
+            this.MACV.Visible = true;
+            this.MACV.VisibleIndex = 10;
+            this.MACV.Width = 52;
             // 
             // HINHANH
             // 
@@ -523,11 +541,12 @@
             // 
             // comboBoxchucvu
             // 
+            this.comboBoxchucvu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxchucvu.FormattingEnabled = true;
             this.comboBoxchucvu.Location = new System.Drawing.Point(507, 363);
             this.comboBoxchucvu.Name = "comboBoxchucvu";
             this.comboBoxchucvu.Size = new System.Drawing.Size(132, 21);
-            this.comboBoxchucvu.TabIndex = 12;
+            this.comboBoxchucvu.TabIndex = 12;            
             // 
             // openFileDialog1
             // 
@@ -614,7 +633,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.LabelControl labelControl11;
-        private DevExpress.XtraEditors.TextEdit txtmanhanvien;
         private DevExpress.XtraEditors.TextEdit txttennhanvien;
         private DevExpress.XtraEditors.TextEdit txtchoohientai;
         private DevExpress.XtraEditors.TextEdit txtsodienthoai;
@@ -627,8 +645,6 @@
         private System.Windows.Forms.RadioButton radioButtonnu;
         private DevExpress.XtraEditors.SimpleButton butduyetanh;
         private DevExpress.XtraEditors.SimpleButton butxoaanh;
-        private DevExpress.XtraGrid.GridControl gridControlnhanvien;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SimpleButton butthem;
         private DevExpress.XtraEditors.SimpleButton butsua;
         private DevExpress.XtraEditors.SimpleButton butxoa;
@@ -643,11 +659,14 @@
         private DevExpress.XtraGrid.Columns.GridColumn NOICAPCMND;
         private DevExpress.XtraGrid.Columns.GridColumn NGAYCAPCMND;
         private DevExpress.XtraGrid.Columns.GridColumn HOKHAU;
-        private DevExpress.XtraGrid.Columns.GridColumn MACHUCVU;
+        private DevExpress.XtraGrid.Columns.GridColumn MACV;
         private DevExpress.XtraGrid.Columns.GridColumn HINHANH;
-        private System.Windows.Forms.ComboBox comboBoxchucvu;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private DevExpress.XtraEditors.PictureEdit pictureEdithinhanh;
+        public DevExpress.XtraGrid.GridControl gridControlnhanvien;
+        public DevExpress.XtraEditors.TextEdit txtmanhanvien;
+        public System.Windows.Forms.ComboBox comboBoxchucvu;
+        public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

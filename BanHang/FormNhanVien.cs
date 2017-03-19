@@ -14,45 +14,24 @@ namespace BanHang
 {
     public partial class FormNhanVien : Form
     {
-        dbQLBanHangDataContext data = new dbQLBanHangDataContext();
-
-
+        NhanVien nv;
         public FormNhanVien()
         {
+            nv = new NhanVien();
             InitializeComponent();
             txtmanhanvien.Enabled = false;
-            LoadData();
+            FormNV_LoadData();
         }        
 
-        public void LoadData()
+        public void FormNV_LoadData()
         {
-            var dl=data.TABLE_NHANVIEN();
-            gridControlnhanvien.DataSource = dl;
-            LoadMaNhanVien();
-            LoadChucVu();
-
+            nv.LoadData(this);
+            FormNV_LoadChucVu();
         }
 
-        public void LoadMaNhanVien()
+        public void FormNV_LoadChucVu()
         {
-            int dem = 10;
-            int kyso = int.Parse(data.RETURN_KYSO("NV").ToString());
-            int len_so = kyso.ToString().Length;
-            dem = dem - 2 - kyso;
-            string kq = "NV";
-            for(int i=1;i<=dem;i++)
-            {
-                kq+="0";
-            }
-            txtmanhanvien.Text = kq + kyso.ToString();
-        }
-
-        public void LoadChucVu()
-        {
-            var cv = data.CHUCVUs.ToList();
-            comboBoxchucvu.DataSource = cv;
-            comboBoxchucvu.DisplayMember = "TENCV";
-            comboBoxchucvu.ValueMember = "MACV";
+            nv.LoadChucVu(this);
         }
 
         private void butthoat_Click(object sender, EventArgs e)
@@ -62,33 +41,23 @@ namespace BanHang
 
         private void butthem_Click(object sender, EventArgs e)
         {
-            NHANVIEN  nv = new NHANVIEN();
-            nv.MANV = txtmanhanvien.Text;
-            nv.TENNV = txttennhanvien.Text;
-            nv.NGAYSINH = Convert.ToDateTime(dateEditngaysinh.ToString());
-            
-            if (radioButtonnam.Checked == true)
+            string gt="";
+            if(radioButtonnam.Checked==true)
             {
-                nv.GIOITINH = radioButtonnam.Text;
+                gt=radioButtonnam.Text;
             }
-            if (radioButtonnu.Checked == true)
+            if(radioButtonnu.Checked==true)
             {
-                nv.GIOITINH = radioButtonnu.Text;
+                gt=radioButtonnu.Text;
             }
-
-            nv.DCNVHIENTAI = txtchoohientai.Text;
-            nv.DTNV = txtsodienthoai.Text;
-            nv.CMND = txtsocmnd.Text;
-            nv.NOICAPCMND = txtnoicap.Text;
-            nv.NGAYCAPCMND = Convert.ToDateTime(dateEditngaycap.Text.ToString());
-            nv.HOKHAU = txthokhau.Text;
-            nv.MACV = comboBoxchucvu.SelectedValue.ToString();
-            nv.HINHANH = duyetanh;
-            data.NHANVIENs.InsertOnSubmit(nv);
-            data.SubmitChanges();
-
-            data.TANG_MATUDONG("NV");
-            LoadData();
+            comboBoxchucvu.ValueMember = "MACV";
+            string machucvu_tam = comboBoxchucvu.SelectedValue.ToString();
+            if (NhanVien.KiemTraThemNV(txtmanhanvien.Text,txttennhanvien.Text,dateEditngaysinh.Text,gt,txtchoohientai.Text,txtsodienthoai.Text,txtsocmnd.Text,txtnoicap.Text,txthokhau.Text,dateEditngaycap.Text,machucvu_tam,duyetanh) == true)
+            {
+                nv.ThemNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam,duyetanh);
+                FormNV_LoadData();
+                ResetForm();
+            }
         }
 
         string duyetanh = "";
@@ -100,9 +69,19 @@ namespace BanHang
             ofd.Filter = "Image|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                duyetanh = openFileDialog1.FileName;
-                pictureEdithinhanh.Image = Image.FromFile(ofd.FileName);
-                butduyetanh.Enabled = false;
+                string duyetanh_tam = "";
+                duyetanh_tam = openFileDialog1.FileName;
+                int len_duyetanh=duyetanh_tam.Length;
+                if (len_duyetanh > 100)
+                {
+                    MessageBox.Show("Đường dẫn quá dài (Hơn 100 ký tự)\n Bạn vui lòng chỉnh sửa lại đường dẫn", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {                    
+                    duyetanh = openFileDialog1.FileName;
+                    pictureEdithinhanh.Image = Image.FromFile(ofd.FileName);
+                    butduyetanh.Enabled = false;
+                }                
             }
         }
 
@@ -117,7 +96,7 @@ namespace BanHang
         {
             txtmanhanvien.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "MANV").ToString();
             txttennhanvien.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "TENNV").ToString();
-            dateEditngaysinh.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "GIOITINH").ToString();
+            dateEditngaysinh.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "NGAYSINH").ToString();            
             txtchoohientai.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "DCNVHIENTAI").ToString();
             txtsodienthoai.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "DTNV").ToString();
             txtsocmnd.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "CMND").ToString();
@@ -137,63 +116,64 @@ namespace BanHang
             }
 
             //chucvu
-            var chucvutam=gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "MACV").ToString();
-            var cv = data.CHUCVUs.SingleOrDefault(c=>c.MACV==chucvutam);
-            comboBoxchucvu.Text = cv.TENCV;
+            nv.ChonChucVu(this);
 
             //hinhanh
-            duyetanh = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "HINHANH").ToString();
-            pictureEdithinhanh.Image = Image.FromFile(duyetanh);
+            //var duyetanh_tam = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "HINHANH").ToString();
+            //pictureEdithinhanh.Image = Image.FromFile(duyetanh_tam);
         }
 
         private void butsua_Click(object sender, EventArgs e)
         {
-            NHANVIEN nv = data.NHANVIENs.SingleOrDefault(n=>n.MANV==txtmanhanvien.Text);
-            if (nv != null)
+            comboBoxchucvu.ValueMember = "MACV";
+            string machucvu_tam = comboBoxchucvu.SelectedValue.ToString();
+            string gt = "";
+            if (radioButtonnam.Checked == true)
             {
-                nv.TENNV = txttennhanvien.Text;
-                nv.NGAYSINH = Convert.ToDateTime(dateEditngaysinh.ToString());
-
-                if (radioButtonnam.Checked)
-                {
-                    nv.GIOITINH = radioButtonnam.Text;
-                }
-                if (radioButtonnu.Checked == true)
-                {
-                    nv.GIOITINH = radioButtonnu.Text;
-                }
-
-                nv.DCNVHIENTAI = txtchoohientai.Text;
-                nv.DTNV = txtsodienthoai.Text;
-                nv.CMND = txtsocmnd.Text;
-                nv.NOICAPCMND = txtnoicap.Text;
-                nv.NGAYCAPCMND = Convert.ToDateTime(dateEditngaycap.Text.ToString());
-                nv.HOKHAU = txthokhau.Text;
-                nv.MACV = comboBoxchucvu.SelectedValue.ToString();
-                nv.HINHANH = duyetanh;                
-                data.SubmitChanges();
-                data.TANG_MATUDONG("NV");
-                LoadData();
+                gt = radioButtonnam.Text;
             }
-                                    
-            
+            if (radioButtonnu.Checked == true)
+            {
+                gt = radioButtonnu.Text;
+            }
+            if (NhanVien.KiemTraSuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, duyetanh) == true)
+            {
+                nv.SuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, duyetanh);
+                FormNV_LoadData();
+                ResetForm();
+            }
         }
 
         private void butxoa_Click(object sender, EventArgs e)
         {
-            NHANVIEN nv = data.NHANVIENs.SingleOrDefault(n=>n.MANV==txtmanhanvien.Text);
-            DialogResult thongbao;            
-            if (nv != null)
+            if (NhanVien.KiemTraXoaNV(txtmanhanvien.Text) == true)
             {
-                thongbao = (MessageBox.Show("Bạn có chắc muốn xóa", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question));
-                if (thongbao == DialogResult.Yes)
-                {
-                    data.NHANVIENs.DeleteOnSubmit(nv);
-                    data.SubmitChanges();
-                    LoadData();
-                }
-            }            
+                nv.XoaNV(txtmanhanvien.Text);
+                FormNV_LoadData();
+                ResetForm();
+            }
         }
-        
+
+        public void ResetForm()
+        {             
+            txttennhanvien.Text="";
+            dateEditngaysinh.Text="";
+            if (radioButtonnam.Checked == true)
+            {
+                radioButtonnam.Checked = false;
+            }
+            if (radioButtonnu.Checked == true)
+            {
+                radioButtonnu.Checked = false;
+            }
+            txtchoohientai.Text="";
+            txtsodienthoai.Text="";
+            txtsocmnd.Text="";
+            txtnoicap.Text="";
+            txthokhau.Text="";
+            dateEditngaycap.Text="";
+            comboBoxchucvu.Text="";
+        }       
+
     }
 }

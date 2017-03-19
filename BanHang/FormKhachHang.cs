@@ -65,9 +65,9 @@ namespace BanHang
             {
                 gt = radioButtonnu.Text;
             }
-            if (KhachHang.KiemTraThemKH(txtmakhachhang.Text, txthoten.Text, gt, dateEditngaysinh.Text, txtdiachi.Text, txtsodienthoai.Text)==true)
+            if (KhachHang.KiemTraThemKH(txtmakhachhang.Text, txthoten.Text,dateEditngaysinh.Text,gt, txtdiachi.Text, txtsodienthoai.Text)==true)
             {
-                kh.ThemKH(txtmakhachhang.Text, txthoten.Text, gt, dateEditngaysinh.Text, txtdiachi.Text, txtsodienthoai.Text);
+                kh.ThemKH(txtmakhachhang.Text, txthoten.Text,dateEditngaysinh.Text,gt, txtdiachi.Text, txtsodienthoai.Text);
                 kh.LoadData(this);
                 ResetForm();
             }
@@ -96,9 +96,9 @@ namespace BanHang
             {
                 gt = radioButtonnu.Text;
             }
-            if (KhachHang.KiemTraSuaKH(txtmakhachhang.Text, txthoten.Text, gt, dateEditngaysinh.Text.ToString(), txtdiachi.Text, txtsodienthoai.Text) == true)
+            if (KhachHang.KiemTraSuaKH(txtmakhachhang.Text, txthoten.Text, dateEditngaysinh.Text,gt, txtdiachi.Text, txtsodienthoai.Text) == true)
             {
-                kh.SuaKH(txtmakhachhang.Text, txthoten.Text, gt,dateEditngaysinh.Text.ToString(), txtdiachi.Text, txtsodienthoai.Text);
+                kh.SuaKH(txtmakhachhang.Text, txthoten.Text, dateEditngaysinh.Text,gt, txtdiachi.Text, txtsodienthoai.Text);
                 kh.LoadData(this);
                 ResetForm();
             }

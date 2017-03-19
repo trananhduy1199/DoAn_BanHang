@@ -49,6 +49,8 @@ namespace BanHang
             }            
         }
 
+
+        //Click vào 1 row load dữ liệu lên các trường trên form
         private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {            
             txtmasanpham.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "MASP").ToString();
