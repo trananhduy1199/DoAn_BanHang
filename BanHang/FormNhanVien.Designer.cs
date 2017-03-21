@@ -74,6 +74,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.pictureEdithinhanh = new DevExpress.XtraEditors.PictureEdit();
+            this.comboBoxTest = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtmanhanvien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttennhanvien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtchoohientai.Properties)).BeginInit();
@@ -247,6 +248,7 @@
             this.txtsodienthoai.Properties.Mask.ShowPlaceHolders = false;
             this.txtsodienthoai.Size = new System.Drawing.Size(132, 20);
             this.txtsodienthoai.TabIndex = 7;
+            this.txtsodienthoai.EditValueChanged += new System.EventHandler(this.txtsodienthoai_EditValueChanged);
             // 
             // txtsocmnd
             // 
@@ -289,6 +291,7 @@
             this.txthokhau.Properties.Mask.ShowPlaceHolders = false;
             this.txthokhau.Size = new System.Drawing.Size(132, 20);
             this.txthokhau.TabIndex = 11;
+            this.txthokhau.EditValueChanged += new System.EventHandler(this.txthokhau_EditValueChanged);
             // 
             // dateEditngaysinh
             // 
@@ -546,7 +549,7 @@
             this.comboBoxchucvu.Location = new System.Drawing.Point(507, 363);
             this.comboBoxchucvu.Name = "comboBoxchucvu";
             this.comboBoxchucvu.Size = new System.Drawing.Size(132, 21);
-            this.comboBoxchucvu.TabIndex = 12;            
+            this.comboBoxchucvu.TabIndex = 12;
             // 
             // openFileDialog1
             // 
@@ -563,11 +566,21 @@
             this.pictureEdithinhanh.Size = new System.Drawing.Size(183, 214);
             this.pictureEdithinhanh.TabIndex = 33;
             // 
+            // comboBoxTest
+            // 
+            this.comboBoxTest.FormattingEnabled = true;
+            this.comboBoxTest.Location = new System.Drawing.Point(358, 386);
+            this.comboBoxTest.Name = "comboBoxTest";
+            this.comboBoxTest.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTest.TabIndex = 34;
+            this.comboBoxTest.SelectedIndexChanged += new System.EventHandler(this.comboBoxTest_SelectedIndexChanged);
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(687, 711);
+            this.Controls.Add(this.comboBoxTest);
             this.Controls.Add(this.pictureEdithinhanh);
             this.Controls.Add(this.comboBoxchucvu);
             this.Controls.Add(this.txthokhau);
@@ -668,5 +681,6 @@
         public DevExpress.XtraEditors.TextEdit txtmanhanvien;
         public System.Windows.Forms.ComboBox comboBoxchucvu;
         public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        public System.Windows.Forms.ComboBox comboBoxTest;
     }
 }
