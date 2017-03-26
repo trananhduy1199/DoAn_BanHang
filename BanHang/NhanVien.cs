@@ -131,23 +131,31 @@ namespace BanHang
         //Thêm Nhân Viên
         public void ThemNV(string manv, string tennv, string ngaysinh, string gioitinh, string choohientai, string sodienthoai, string socmnd, string noicap, string hokhau, string ngaycap, string chucvu, string hinhanh)
         {
-            NHANVIEN nv = new NHANVIEN();
-            nv.MANV = manv;
-            nv.TENNV = tennv;
-            nv.NGAYSINH = Convert.ToDateTime(ngaysinh.ToString());
-            nv.GIOITINH = gioitinh;
-            nv.DCNVHIENTAI = choohientai;
-            nv.DTNV = sodienthoai;
-            nv.CMND = socmnd;
-            nv.NOICAPCMND = noicap;
-            nv.HOKHAU = hokhau;
-            nv.NGAYCAPCMND = Convert.ToDateTime(ngaycap.ToString());
-            nv.MACV = chucvu;
-            nv.HINHANH = hinhanh;
+            NHANVIEN kt = data.Database().NHANVIENs.SingleOrDefault(k => k.MANV == manv);
+            if (kt == null)
+            {
+                NHANVIEN nv = new NHANVIEN();
+                nv.MANV = manv;
+                nv.TENNV = tennv;
+                nv.NGAYSINH = Convert.ToDateTime(ngaysinh.ToString());
+                nv.GIOITINH = gioitinh;
+                nv.DCNVHIENTAI = choohientai;
+                nv.DTNV = sodienthoai;
+                nv.CMND = socmnd;
+                nv.NOICAPCMND = noicap;
+                nv.HOKHAU = hokhau;
+                nv.NGAYCAPCMND = Convert.ToDateTime(ngaycap.ToString());
+                nv.MACV = chucvu;
+                nv.HINHANH = hinhanh;
 
-            data.Database().NHANVIENs.InsertOnSubmit(nv);
-            data.Database().SubmitChanges();
-            data.Database().TANG_MATUDONG("NV");
+                data.Database().NHANVIENs.InsertOnSubmit(nv);
+                data.Database().SubmitChanges();
+                data.Database().TANG_MATUDONG("NV");
+            }
+            else
+            {
+                MessageBox.Show("Không thể thêm vì mã nhân viên đã có rồi", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         //Kiểm tra sửa nhân viên

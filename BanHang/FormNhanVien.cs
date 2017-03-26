@@ -52,9 +52,9 @@ namespace BanHang
             }
             comboBoxchucvu.ValueMember = "MACV";
             string machucvu_tam = comboBoxchucvu.SelectedValue.ToString();
-            if (NhanVien.KiemTraThemNV(txtmanhanvien.Text,txttennhanvien.Text,dateEditngaysinh.Text,gt,txtchoohientai.Text,txtsodienthoai.Text,txtsocmnd.Text,txtnoicap.Text,txthokhau.Text,dateEditngaycap.Text,machucvu_tam,duyetanh) == true)
+            if (NhanVien.KiemTraThemNV(txtmanhanvien.Text,txttennhanvien.Text,dateEditngaysinh.Text,gt,txtchoohientai.Text,txtsodienthoai.Text,txtsocmnd.Text,txtnoicap.Text,txthokhau.Text,dateEditngaycap.Text,machucvu_tam,ofd.FileName) == true)
             {
-                nv.ThemNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam,duyetanh);
+                nv.ThemNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, ofd.FileName);
                 FormNV_LoadData();
                 ResetForm();
             }
@@ -64,8 +64,7 @@ namespace BanHang
         OpenFileDialog ofd = new OpenFileDialog();
         private void butduyetanh_Click(object sender, EventArgs e)
         {
-            ofd.Title = "Open Image";
-            ofd.InitialDirectory = @"C:\";
+            ofd.Title = "Open Image";            
             ofd.Filter = "Image|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -119,8 +118,8 @@ namespace BanHang
             nv.ChonChucVu(this);
 
             //hinhanh
-            //var duyetanh_tam = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "HINHANH").ToString();
-            //pictureEdithinhanh.Image = Image.FromFile(duyetanh_tam);
+            string duyetanh_tam = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "HINHANH").ToString();
+            pictureEdithinhanh.Image = Image.FromFile(duyetanh_tam);
         }
 
         private void butsua_Click(object sender, EventArgs e)
@@ -136,9 +135,9 @@ namespace BanHang
             {
                 gt = radioButtonnu.Text;
             }
-            if (NhanVien.KiemTraSuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, duyetanh) == true)
+            if (NhanVien.KiemTraSuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, ofd.FileName) == true)
             {
-                nv.SuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, duyetanh);
+                nv.SuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, ofd.FileName);
                 FormNV_LoadData();
                 ResetForm();
             }

@@ -318,8 +318,6 @@ namespace BanHang.LinqToSQL
 		
 		private string _MANV;
 		
-		private EntityRef<NHANVIEN> _NHANVIEN;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -334,7 +332,6 @@ namespace BanHang.LinqToSQL
 		
 		public TAIKHOAN()
 		{
-			this._NHANVIEN = default(EntityRef<NHANVIEN>);
 			OnCreated();
 		}
 		
@@ -389,49 +386,11 @@ namespace BanHang.LinqToSQL
 			{
 				if ((this._MANV != value))
 				{
-					if (this._NHANVIEN.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnMANVChanging(value);
 					this.SendPropertyChanging();
 					this._MANV = value;
 					this.SendPropertyChanged("MANV");
 					this.OnMANVChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_TAIKHOAN", Storage="_NHANVIEN", ThisKey="MANV", OtherKey="MANV", IsForeignKey=true)]
-		public NHANVIEN NHANVIEN
-		{
-			get
-			{
-				return this._NHANVIEN.Entity;
-			}
-			set
-			{
-				NHANVIEN previousValue = this._NHANVIEN.Entity;
-				if (((previousValue != value) 
-							|| (this._NHANVIEN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._NHANVIEN.Entity = null;
-						previousValue.TAIKHOANs.Remove(this);
-					}
-					this._NHANVIEN.Entity = value;
-					if ((value != null))
-					{
-						value.TAIKHOANs.Add(this);
-						this._MANV = value.MANV;
-					}
-					else
-					{
-						this._MANV = default(string);
-					}
-					this.SendPropertyChanged("NHANVIEN");
 				}
 			}
 		}
@@ -467,8 +426,6 @@ namespace BanHang.LinqToSQL
 		
 		private string _TENCV;
 		
-		private EntitySet<NHANVIEN> _NHANVIENs;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -481,7 +438,6 @@ namespace BanHang.LinqToSQL
 		
 		public CHUCVU()
 		{
-			this._NHANVIENs = new EntitySet<NHANVIEN>(new Action<NHANVIEN>(this.attach_NHANVIENs), new Action<NHANVIEN>(this.detach_NHANVIENs));
 			OnCreated();
 		}
 		
@@ -525,19 +481,6 @@ namespace BanHang.LinqToSQL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CHUCVU_NHANVIEN", Storage="_NHANVIENs", ThisKey="MACV", OtherKey="MACV")]
-		public EntitySet<NHANVIEN> NHANVIENs
-		{
-			get
-			{
-				return this._NHANVIENs;
-			}
-			set
-			{
-				this._NHANVIENs.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -556,18 +499,6 @@ namespace BanHang.LinqToSQL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_NHANVIENs(NHANVIEN entity)
-		{
-			this.SendPropertyChanging();
-			entity.CHUCVU = this;
-		}
-		
-		private void detach_NHANVIENs(NHANVIEN entity)
-		{
-			this.SendPropertyChanging();
-			entity.CHUCVU = null;
 		}
 	}
 	
@@ -1271,11 +1202,7 @@ namespace BanHang.LinqToSQL
 		
 		private string _HINHANH;
 		
-		private EntitySet<TAIKHOAN> _TAIKHOANs;
-		
 		private EntitySet<HOADON> _HOADONs;
-		
-		private EntityRef<CHUCVU> _CHUCVU;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1309,9 +1236,7 @@ namespace BanHang.LinqToSQL
 		
 		public NHANVIEN()
 		{
-			this._TAIKHOANs = new EntitySet<TAIKHOAN>(new Action<TAIKHOAN>(this.attach_TAIKHOANs), new Action<TAIKHOAN>(this.detach_TAIKHOANs));
 			this._HOADONs = new EntitySet<HOADON>(new Action<HOADON>(this.attach_HOADONs), new Action<HOADON>(this.detach_HOADONs));
-			this._CHUCVU = default(EntityRef<CHUCVU>);
 			OnCreated();
 		}
 		
@@ -1526,10 +1451,6 @@ namespace BanHang.LinqToSQL
 			{
 				if ((this._MACV != value))
 				{
-					if (this._CHUCVU.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnMACVChanging(value);
 					this.SendPropertyChanging();
 					this._MACV = value;
@@ -1559,19 +1480,6 @@ namespace BanHang.LinqToSQL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_TAIKHOAN", Storage="_TAIKHOANs", ThisKey="MANV", OtherKey="MANV")]
-		public EntitySet<TAIKHOAN> TAIKHOANs
-		{
-			get
-			{
-				return this._TAIKHOANs;
-			}
-			set
-			{
-				this._TAIKHOANs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_HOADON", Storage="_HOADONs", ThisKey="MANV", OtherKey="MANV")]
 		public EntitySet<HOADON> HOADONs
 		{
@@ -1582,40 +1490,6 @@ namespace BanHang.LinqToSQL
 			set
 			{
 				this._HOADONs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CHUCVU_NHANVIEN", Storage="_CHUCVU", ThisKey="MACV", OtherKey="MACV", IsForeignKey=true)]
-		public CHUCVU CHUCVU
-		{
-			get
-			{
-				return this._CHUCVU.Entity;
-			}
-			set
-			{
-				CHUCVU previousValue = this._CHUCVU.Entity;
-				if (((previousValue != value) 
-							|| (this._CHUCVU.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._CHUCVU.Entity = null;
-						previousValue.NHANVIENs.Remove(this);
-					}
-					this._CHUCVU.Entity = value;
-					if ((value != null))
-					{
-						value.NHANVIENs.Add(this);
-						this._MACV = value.MACV;
-					}
-					else
-					{
-						this._MACV = default(string);
-					}
-					this.SendPropertyChanged("CHUCVU");
-				}
 			}
 		}
 		
@@ -1637,18 +1511,6 @@ namespace BanHang.LinqToSQL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_TAIKHOANs(TAIKHOAN entity)
-		{
-			this.SendPropertyChanging();
-			entity.NHANVIEN = this;
-		}
-		
-		private void detach_TAIKHOANs(TAIKHOAN entity)
-		{
-			this.SendPropertyChanging();
-			entity.NHANVIEN = null;
 		}
 		
 		private void attach_HOADONs(HOADON entity)
@@ -2327,7 +2189,7 @@ namespace BanHang.LinqToSQL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HINHANH", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HINHANH", DbType="NVarChar(100)")]
 		public string HINHANH
 		{
 			get

@@ -12,14 +12,12 @@
       <Column Name="TAIKHOAN" Member="TAIKHOAN1" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MATKHAU" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="MANV" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
-      <Association Name="NHANVIEN_TAIKHOAN" Member="NHANVIEN" ThisKey="MANV" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CHUCVU" Member="CHUCVUs">
     <Type Name="CHUCVU">
       <Column Name="MACV" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TENCV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="CHUCVU_NHANVIEN" Member="NHANVIENs" ThisKey="MACV" OtherKey="MACV" Type="NHANVIEN" />
     </Type>
   </Table>
   <Table Name="dbo.CTHD" Member="CTHDs">
@@ -68,9 +66,7 @@
       <Column Name="HOKHAU" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="MACV" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="HINHANH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="NHANVIEN_TAIKHOAN" Member="TAIKHOANs" ThisKey="MANV" OtherKey="MANV" Type="TAIKHOAN" />
       <Association Name="NHANVIEN_HOADON" Member="HOADONs" ThisKey="MANV" OtherKey="MANV" Type="HOADON" />
-      <Association Name="CHUCVU_NHANVIEN" Member="CHUCVU" ThisKey="MACV" OtherKey="MACV" Type="CHUCVU" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PHANQUYEN" Member="PHANQUYENs">
@@ -123,7 +119,7 @@
       <Column Name="NGAYCAPCMND" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="HOKHAU" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="MACV" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
-      <Column Name="HINHANH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HINHANH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.RETURN_KYSO" Method="RETURN_KYSO" IsComposable="true">
