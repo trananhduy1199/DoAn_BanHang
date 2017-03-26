@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+<<<<<<< HEAD
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.txttaikhoan = new DevExpress.XtraEditors.TextEdit();
@@ -43,6 +44,21 @@
             this.simpleButtonsua = new DevExpress.XtraEditors.SimpleButton();
             this.butthoat = new DevExpress.XtraEditors.SimpleButton();
             this.butxoa = new DevExpress.XtraEditors.SimpleButton();
+=======
+            this.txttaikhoan = new DevExpress.XtraEditors.TextEdit();
+            this.txtmatkhau = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.gridControltaikhoan = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.butthem = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButtonsua = new DevExpress.XtraEditors.SimpleButton();
+            this.butthoat = new DevExpress.XtraEditors.SimpleButton();
+            this.TAIKHOAN1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.MATKHAU = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.MANV = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.comboBoxEditmanv = new System.Windows.Forms.ComboBox();
+>>>>>>> origin/master
             ((System.ComponentModel.ISupportInitialize)(this.txttaikhoan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtmatkhau.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControltaikhoan)).BeginInit();
@@ -54,21 +70,52 @@
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 13F);
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+<<<<<<< HEAD
             this.labelControl1.Location = new System.Drawing.Point(38, 37);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(113, 25);
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "Tài Khoản:";
             // 
+=======
+            this.labelControl1.Location = new System.Drawing.Point(12, 66);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(113, 25);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "Tài Khoản:";
+            // 
+            // txttaikhoan
+            // 
+            this.txttaikhoan.Location = new System.Drawing.Point(131, 71);
+            this.txttaikhoan.Name = "txttaikhoan";
+            this.txttaikhoan.Size = new System.Drawing.Size(178, 20);
+            this.txttaikhoan.TabIndex = 2;
+            // 
+            // txtmatkhau
+            // 
+            this.txtmatkhau.Location = new System.Drawing.Point(131, 127);
+            this.txtmatkhau.Name = "txtmatkhau";
+            this.txtmatkhau.Properties.Mask.EditMask = "*";
+            this.txtmatkhau.Size = new System.Drawing.Size(178, 20);
+            this.txtmatkhau.TabIndex = 3;
+            // 
+>>>>>>> origin/master
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 13F);
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+<<<<<<< HEAD
             this.labelControl2.Location = new System.Drawing.Point(38, 96);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(113, 25);
             this.labelControl2.TabIndex = 6;
+=======
+            this.labelControl2.Location = new System.Drawing.Point(12, 122);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(113, 25);
+            this.labelControl2.TabIndex = 5;
+>>>>>>> origin/master
             this.labelControl2.Text = "Mật Khẩu:";
             // 
             // labelControl3
@@ -76,6 +123,7 @@
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 13F);
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+<<<<<<< HEAD
             this.labelControl3.Location = new System.Drawing.Point(38, 170);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(113, 25);
@@ -112,6 +160,21 @@
             this.gridControltaikhoan.Name = "gridControltaikhoan";
             this.gridControltaikhoan.Size = new System.Drawing.Size(315, 200);
             this.gridControltaikhoan.TabIndex = 13;
+=======
+            this.labelControl3.Location = new System.Drawing.Point(12, 176);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(113, 25);
+            this.labelControl3.TabIndex = 6;
+            this.labelControl3.Text = "Mã Nhân Viên:";
+            // 
+            // gridControltaikhoan
+            // 
+            this.gridControltaikhoan.Location = new System.Drawing.Point(12, 295);
+            this.gridControltaikhoan.MainView = this.gridView1;
+            this.gridControltaikhoan.Name = "gridControltaikhoan";
+            this.gridControltaikhoan.Size = new System.Drawing.Size(297, 200);
+            this.gridControltaikhoan.TabIndex = 7;
+>>>>>>> origin/master
             this.gridControltaikhoan.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
@@ -125,6 +188,36 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             // 
+<<<<<<< HEAD
+=======
+            // butthem
+            // 
+            this.butthem.Location = new System.Drawing.Point(13, 225);
+            this.butthem.Name = "butthem";
+            this.butthem.Size = new System.Drawing.Size(75, 23);
+            this.butthem.TabIndex = 8;
+            this.butthem.Text = "Thêm";
+            this.butthem.Click += new System.EventHandler(this.butthem_Click);
+            // 
+            // simpleButtonsua
+            // 
+            this.simpleButtonsua.Location = new System.Drawing.Point(131, 224);
+            this.simpleButtonsua.Name = "simpleButtonsua";
+            this.simpleButtonsua.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonsua.TabIndex = 9;
+            this.simpleButtonsua.Text = "Sửa";
+            this.simpleButtonsua.Click += new System.EventHandler(this.simpleButtonsua_Click);
+            // 
+            // butthoat
+            // 
+            this.butthoat.Location = new System.Drawing.Point(235, 223);
+            this.butthoat.Name = "butthoat";
+            this.butthoat.Size = new System.Drawing.Size(75, 23);
+            this.butthoat.TabIndex = 10;
+            this.butthoat.Text = "Thoát";
+            this.butthoat.Click += new System.EventHandler(this.butthoat_Click);
+            // 
+>>>>>>> origin/master
             // TAIKHOAN1
             // 
             this.TAIKHOAN1.Caption = "Tài Khoản";
@@ -155,6 +248,7 @@
             this.MANV.Visible = true;
             this.MANV.VisibleIndex = 2;
             // 
+<<<<<<< HEAD
             // butthem
             // 
             this.butthem.Location = new System.Drawing.Point(12, 256);
@@ -189,22 +283,43 @@
             this.butxoa.Size = new System.Drawing.Size(75, 23);
             this.butxoa.TabIndex = 17;
             this.butxoa.Text = "Xóa";
+=======
+            // comboBoxEditmanv
+            // 
+            this.comboBoxEditmanv.FormattingEnabled = true;
+            this.comboBoxEditmanv.Location = new System.Drawing.Point(131, 179);
+            this.comboBoxEditmanv.Name = "comboBoxEditmanv";
+            this.comboBoxEditmanv.Size = new System.Drawing.Size(178, 21);
+            this.comboBoxEditmanv.TabIndex = 11;
+>>>>>>> origin/master
             // 
             // FormTaiKhoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(428, 524);
             this.Controls.Add(this.butxoa);
+=======
+            this.ClientSize = new System.Drawing.Size(323, 507);
+            this.Controls.Add(this.comboBoxEditmanv);
+>>>>>>> origin/master
             this.Controls.Add(this.butthoat);
             this.Controls.Add(this.simpleButtonsua);
             this.Controls.Add(this.butthem);
             this.Controls.Add(this.gridControltaikhoan);
+<<<<<<< HEAD
             this.Controls.Add(this.comboboxmanv);
             this.Controls.Add(this.txtmatkhau);
             this.Controls.Add(this.txttaikhoan);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl2);
+=======
+            this.Controls.Add(this.labelControl3);
+            this.Controls.Add(this.labelControl2);
+            this.Controls.Add(this.txtmatkhau);
+            this.Controls.Add(this.txttaikhoan);
+>>>>>>> origin/master
             this.Controls.Add(this.labelControl1);
             this.Name = "FormTaiKhoan";
             this.Text = "FormTaiKhoan";
@@ -219,6 +334,7 @@
         #endregion
 
         private DevExpress.XtraEditors.LabelControl labelControl1;
+<<<<<<< HEAD
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.TextEdit txttaikhoan;
@@ -233,5 +349,20 @@
         private DevExpress.XtraEditors.SimpleButton simpleButtonsua;
         private DevExpress.XtraEditors.SimpleButton butthoat;
         private DevExpress.XtraEditors.SimpleButton butxoa;
+=======
+        private DevExpress.XtraEditors.TextEdit txttaikhoan;
+        private DevExpress.XtraEditors.TextEdit txtmatkhau;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.SimpleButton butthem;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonsua;
+        private DevExpress.XtraEditors.SimpleButton butthoat;
+        private DevExpress.XtraGrid.Columns.GridColumn TAIKHOAN1;
+        private DevExpress.XtraGrid.Columns.GridColumn MATKHAU;
+        private DevExpress.XtraGrid.Columns.GridColumn MANV;
+        public DevExpress.XtraGrid.GridControl gridControltaikhoan;
+        public System.Windows.Forms.ComboBox comboBoxEditmanv;
+>>>>>>> origin/master
     }
 }

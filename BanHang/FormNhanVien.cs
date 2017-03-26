@@ -23,16 +23,13 @@ namespace BanHang
             FormNV_LoadData();
         }        
 
+        //Load Data
         public void FormNV_LoadData()
         {
             nv.LoadData(this);
-            FormNV_LoadChucVu();
-        }
-
-        public void FormNV_LoadChucVu()
-        {
             nv.LoadChucVu(this);
-        }
+            nv.Loadcombo(this);
+        }        
 
         private void butthoat_Click(object sender, EventArgs e)
         {
@@ -49,12 +46,19 @@ namespace BanHang
             if(radioButtonnu.Checked==true)
             {
                 gt=radioButtonnu.Text;
+<<<<<<< HEAD
             }
             comboBoxchucvu.ValueMember = "MACV";
             string machucvu_tam = comboBoxchucvu.SelectedValue.ToString();
             if (NhanVien.KiemTraThemNV(txtmanhanvien.Text,txttennhanvien.Text,dateEditngaysinh.Text,gt,txtchoohientai.Text,txtsodienthoai.Text,txtsocmnd.Text,txtnoicap.Text,txthokhau.Text,dateEditngaycap.Text,machucvu_tam,ofd.FileName) == true)
             {
                 nv.ThemNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, ofd.FileName);
+=======
+            }                        
+            if (NhanVien.KiemTraThemNV(txtmanhanvien.Text,txttennhanvien.Text,dateEditngaysinh.Text,gt,txtchoohientai.Text,txtsodienthoai.Text,txtsocmnd.Text,txtnoicap.Text,txthokhau.Text,dateEditngaycap.Text,comboBoxTest.Text,duyetanh) == true)
+            {
+                nv.ThemNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, comboBoxTest.Text, duyetanh);
+>>>>>>> origin/master
                 FormNV_LoadData();
                 ResetForm();
             }
@@ -114,9 +118,7 @@ namespace BanHang
                 radioButtonnu.Checked = true;
             }
 
-            //chucvu
-            nv.ChonChucVu(this);
-
+            nv.ChonMaCV(this);
             //hinhanh
             string duyetanh_tam = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "HINHANH").ToString();
             pictureEdithinhanh.Image = Image.FromFile(duyetanh_tam);
@@ -124,8 +126,6 @@ namespace BanHang
 
         private void butsua_Click(object sender, EventArgs e)
         {
-            comboBoxchucvu.ValueMember = "MACV";
-            string machucvu_tam = comboBoxchucvu.SelectedValue.ToString();
             string gt = "";
             if (radioButtonnam.Checked == true)
             {
@@ -134,13 +134,37 @@ namespace BanHang
             if (radioButtonnu.Checked == true)
             {
                 gt = radioButtonnu.Text;
+<<<<<<< HEAD
             }
             if (NhanVien.KiemTraSuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, ofd.FileName) == true)
             {
                 nv.SuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, ofd.FileName);
+=======
+            }               
+            if (NhanVien.KiemTraSuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text,comboBoxTest.Text, duyetanh) == true)
+            {
+                string ten = comboBoxTest.Text;
+                nv.SuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, ten, duyetanh);
+>>>>>>> origin/master
                 FormNV_LoadData();
                 ResetForm();
             }
+            //string machucvu_tam = comboBoxchucvu.SelectedValue.ToString();
+            //string gt = "";
+            //if (radioButtonnam.Checked == true)
+            //{
+            //    gt = radioButtonnam.Text;
+            //}
+            //if (radioButtonnu.Checked == true)
+            //{
+            //    gt = radioButtonnu.Text;
+            //}
+            //if (NhanVien.KiemTraSuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, duyetanh) == true)
+            //{
+            //    nv.SuaNV(txtmanhanvien.Text, txttennhanvien.Text, dateEditngaysinh.Text, gt, txtchoohientai.Text, txtsodienthoai.Text, txtsocmnd.Text, txtnoicap.Text, txthokhau.Text, dateEditngaycap.Text, machucvu_tam, duyetanh);
+            //    FormNV_LoadData();
+            //    ResetForm();
+            //}
         }
 
         private void butxoa_Click(object sender, EventArgs e)
@@ -172,6 +196,21 @@ namespace BanHang
             txthokhau.Text="";
             dateEditngaycap.Text="";
             comboBoxchucvu.Text="";
+        }
+
+        private void comboBoxTest_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtsodienthoai_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txthokhau_EditValueChanged(object sender, EventArgs e)
+        {
+
         }       
 
     }

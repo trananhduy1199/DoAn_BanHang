@@ -20,18 +20,31 @@ namespace BanHang
         public void LoadData(FormTaiKhoan ftk)
         {
             var dl = data.Database().TAIKHOANs.ToList();
+<<<<<<< HEAD
             ftk.gridControltaikhoan.DataSource = dl;
+=======
+            ftk.gridControltaikhoan.DataSource = dl;            
+>>>>>>> origin/master
         }
 
         public void LoadMaNV(FormTaiKhoan ftk)
         {
             var dl = data.Database().NHANVIENs.ToList();
+<<<<<<< HEAD
             ftk.comboboxmanv.DataSource = dl;
             ftk.comboboxmanv.DisplayMember = "MANV";
             ftk.comboboxmanv.ValueMember = "MANV";
         }
 
         public static bool KTThemTK(string taikhoan, string matkhau, string manv)
+=======
+            ftk.comboBoxEditmanv.DataSource = dl;
+            ftk.comboBoxEditmanv.DisplayMember = "MANV";
+            ftk.comboBoxEditmanv.ValueMember = "MANV";
+        }
+
+        public static bool KTThemTK(string taikhoan,string matkhau, string manv)
+>>>>>>> origin/master
         {
             int kt = 0;
             string kq = "Phát Hiện Những Lỗi Sau:\n";
@@ -61,9 +74,15 @@ namespace BanHang
             }
         }
 
+<<<<<<< HEAD
         public void ThemTK(string taikhoan, string matkhau, string manv)
         {
             TAIKHOAN tk_tam = data.Database().TAIKHOANs.SingleOrDefault(t => t.TAIKHOAN1 == taikhoan);
+=======
+        public void ThemTK(string taikhoan,string matkhau, string manv)
+        { 
+            TAIKHOAN tk_tam=data.Database().TAIKHOANs.SingleOrDefault(t=>t.TAIKHOAN1==taikhoan);
+>>>>>>> origin/master
             DialogResult thongbao;
             if (tk_tam == null)
             {
@@ -123,9 +142,15 @@ namespace BanHang
             {
                 thongbao = (MessageBox.Show("Bạn có chắc muốn sửa", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question));
                 if (thongbao == DialogResult.Yes)
+<<<<<<< HEAD
                 {
                     tk.MATKHAU = matkhau;
                     tk.MANV = manv;
+=======
+                {                                        
+                    tk.MATKHAU = matkhau;
+                    tk.MANV = manv;                    
+>>>>>>> origin/master
                     data.Database().SubmitChanges();
                     MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -135,6 +160,7 @@ namespace BanHang
                 MessageBox.Show("Tài khoản không tồn tại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+<<<<<<< HEAD
 
         public static bool KTXoaTK(string taikhoan)
         {
@@ -176,5 +202,7 @@ namespace BanHang
             }
         }
         
+=======
+>>>>>>> origin/master
     }
 }

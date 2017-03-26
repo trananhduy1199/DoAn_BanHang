@@ -35,7 +35,7 @@ namespace BanHang
             fnv.txtmanhanvien.Text = kq + kyso.ToString();
         }
 
-        //Load gridcontrol 
+        //Load Combobox chức vụ.
         public void LoadChucVu(FormNhanVien fnv)
         {
             var cv = data.Database().CHUCVUs.ToList();
@@ -44,13 +44,23 @@ namespace BanHang
             fnv.comboBoxchucvu.ValueMember = "MACV";
         }
 
-        //Chọn chức vụ dưới gridcontrol -> đưa lên comboboxchucvu                   
-        public void ChonChucVu(FormNhanVien fnv)
+        public void Loadcombo(FormNhanVien fnv)
         {
-            var chucvutam = fnv.gridView1.GetRowCellValue(fnv.gridView1.FocusedRowHandle, "MACV").ToString();
-            var cv = data.Database().CHUCVUs.SingleOrDefault(c => c.MACV == chucvutam);
-            fnv.comboBoxchucvu.Text = cv.TENCV;
+            var tam = data.Database().CHUCVUs.ToList();
+            foreach (var item in tam)
+            {
+                fnv.comboBoxTest.Items.Add(item.TENCV);
+            }
         }
+
+        public void ChonMaCV(FormNhanVien fnv)
+        {
+            var machucvutam = fnv.gridView1.GetRowCellValue(fnv.gridView1.FocusedRowHandle, "MACV").ToString();
+
+            var laydl=data.Database().CHUCVUs.SingleOrDefault(l=>l.MACV==machucvutam);
+            fnv.comboBoxchucvu.Text = laydl.TENCV;
+        }
+        
 
         //Kiểm tra thêm nhân viên
         public static bool KiemTraThemNV(string manv, string tennv, string ngaysinh, string gioitinh, string choohientai, string sodienthoai, string socmnd, string noicap, string hokhau, string ngaycap, string chucvu, string hinhanh)
@@ -129,7 +139,7 @@ namespace BanHang
         }
 
         //Thêm Nhân Viên
-        public void ThemNV(string manv, string tennv, string ngaysinh, string gioitinh, string choohientai, string sodienthoai, string socmnd, string noicap, string hokhau, string ngaycap, string chucvu, string hinhanh)
+        public void ThemNV(string manv, string tennv, string ngaysinh, string gioitinh, string choohientai, string sodienthoai, string socmnd, string noicap, string hokhau, string ngaycap, string tenchucvu, string hinhanh)
         {
             NHANVIEN kt = data.Database().NHANVIENs.SingleOrDefault(k => k.MANV == manv);
             if (kt == null)
@@ -145,7 +155,15 @@ namespace BanHang
                 nv.NOICAPCMND = noicap;
                 nv.HOKHAU = hokhau;
                 nv.NGAYCAPCMND = Convert.ToDateTime(ngaycap.ToString());
+<<<<<<< HEAD
                 nv.MACV = chucvu;
+=======
+                CHUCVU CV = data.Database().CHUCVUs.SingleOrDefault(c=>c.TENCV==tenchucvu);
+                if (CV != null)
+                {
+                    nv.MACV = CV.MACV;   
+                }                
+>>>>>>> origin/master
                 nv.HINHANH = hinhanh;
 
                 data.Database().NHANVIENs.InsertOnSubmit(nv);
@@ -236,34 +254,45 @@ namespace BanHang
         }
 
         //Sửa nhân viên
-        public void SuaNV(string manv, string tennv, string ngaysinh, string gioitinh, string choohientai, string sodienthoai, string socmnd, string noicap, string hokhau, string ngaycap, string chucvu, string hinhanh)
-        {                                                                                                        
-            NHANVIEN nv = data.Database().NHANVIENs.SingleOrDefault(n=>n.MANV==manv);
-            DialogResult thongbao;
-            if (nv != null)
+        public void SuaNV(string manv, string tennv, string ngaysinh, string gioitinh, string choohientai, string sodienthoai, string socmnd, string noicap, string hokhau, string ngaycap, string tenchucvu, string hinhanh)
+        {
+            try
             {
-                thongbao = (MessageBox.Show("Bạn có chắc muốn sửa", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question));
-                if (thongbao == DialogResult.Yes)
+                NHANVIEN nv = data.Database().NHANVIENs.SingleOrDefault(n => n.MANV == manv);
+                DialogResult thongbao;
+                if (nv != null)
                 {
-                    nv.TENNV = tennv;
-                    nv.NGAYSINH = Convert.ToDateTime(ngaysinh.ToString());
-                    nv.GIOITINH = gioitinh;
-                    nv.DCNVHIENTAI = choohientai;
-                    nv.DTNV = sodienthoai;
-                    nv.CMND = socmnd;
-                    nv.NOICAPCMND = noicap;
-                    nv.HOKHAU = hokhau;
-                    nv.NGAYCAPCMND = Convert.ToDateTime(ngaycap.ToString());
-                    nv.MACV = chucvu;
-                    nv.HINHANH = hinhanh;
+                    thongbao = (MessageBox.Show("Bạn có chắc muốn sửa", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question));
+                    if (thongbao == DialogResult.Yes)
+                    {
+                        nv.TENNV = tennv;
+                        nv.NGAYSINH = Convert.ToDateTime(ngaysinh.ToString());
+                        nv.GIOITINH = gioitinh;
+                        nv.DCNVHIENTAI = choohientai;
+                        nv.DTNV = sodienthoai;
+                        nv.CMND = socmnd;
+                        nv.NOICAPCMND = noicap;
+                        nv.HOKHAU = hokhau;
+                        nv.NGAYCAPCMND = Convert.ToDateTime(ngaycap.ToString());
+                        //CHUCVU CV = data.Database().CHUCVUs.SingleOrDefault(c => c.TENCV == tenchucvu);
+                        //if (CV != null)
+                        //{
+                        //    nv.MACV = CV.MACV;
+                        //}                
+                        nv.HINHANH = hinhanh;
 
-                    data.Database().SubmitChanges();   
-                    MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }                
+                        data.Database().SubmitChanges();
+                        MessageBox.Show("Sửa thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Mã nhân viên không tồn tại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Mã nhân viên không tồn tại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.ToString());
             }
         }
 

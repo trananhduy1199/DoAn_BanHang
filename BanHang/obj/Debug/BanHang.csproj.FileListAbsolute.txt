@@ -25,7 +25,6 @@ C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\bin\Debug\EntityFramework.dll
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\bin\Debug\EntityFramework.xml
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.csprojResolveAssemblyReference.cache
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.Form1.resources
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.FormChucVu.resources
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.FormKhachHang.resources
@@ -35,4 +34,8 @@ C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.Properties.Re
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.csproj.GenerateResource.Cache
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.exe.licenses
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.FormSanPham.resources
+<<<<<<< HEAD
+=======
+C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.csprojResolveAssemblyReference.cache
+>>>>>>> origin/master
 C:\Users\smile\Desktop\CNPM\DoAn_BanHang\BanHang\obj\Debug\BanHang.FormTaiKhoan.resources
